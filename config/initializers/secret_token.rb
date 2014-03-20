@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Project::Application.config.secret_key_base = '71c8af01be58e845828e4a5f05ebcfaa6a0875b4d94182cf370a152cd3c1482866c7d0a6757bc3f93cb700c8ca319c863d6a7db09640d9bf3b98719dc84507ec'
+Taskoholic::Application.config.secret_key_base = '71c8af01be58e845828e4a5f05ebcfaa6a0875b4d94182cf370a152cd3c1482866c7d0a6757bc3f93cb700c8ca319c863d6a7db09640d9bf3b98719dc84507ec'
