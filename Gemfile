@@ -46,3 +46,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'bcrypt', '~> 3.1.7'
