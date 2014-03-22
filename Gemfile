@@ -48,3 +48,5 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'bcrypt', '~> 3.1.7'
+
+gem 'pg'
