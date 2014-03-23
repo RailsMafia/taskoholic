@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates :password, length: { minimum: 6 }
+  has_and_belongs_to_many :projects
 end
