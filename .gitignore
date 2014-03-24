@@ -17,3 +17,4 @@
 
 #ignore DB settings
 /config/database.yml
+/db/schema.rb
