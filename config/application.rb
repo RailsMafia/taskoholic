@@ -20,5 +20,15 @@ module Taskoholic
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    config.generators do |g|
+      g.test_framework :rspec, :view_spec => false,
+                       :fixture => true,
+                       :fixture_replacement => 'factory_girl'
+
+      g.helper = false
+      g.fixture_replacement :factory_girl, :dir =>'spec/factories'
+    end
+
   end
 end
