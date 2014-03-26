@@ -36,7 +36,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -47,6 +47,24 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'bcrypt', '~> 3.1.7'
-
 gem 'pg'
+
+group :development, :test do
+  gem 'pry-rails'
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-remote'
+  gem 'factory_girl_rails'
+  gem 'faker', '~> 1.2.0'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'spork'
+  gem 'database_cleaner', '1.0.0.RC1'
+  gem 'shoulda-matchers'
+  gem 'webmock'
+
+  # Use MySQL for test also
+  gem 'mysql2'
+end

@@ -4,3 +4,15 @@ rvm:
   - 2.0.0
   - 2.1.0
   - 2.1.1
+env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - mysql -e 'create database taskoholic_test'
+  - psql -c 'create database taskoholic_test' -U postgres
