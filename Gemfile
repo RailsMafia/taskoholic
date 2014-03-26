@@ -64,4 +64,7 @@ group :test do
   gem 'database_cleaner', '1.0.0.RC1'
   gem 'shoulda-matchers'
   gem 'webmock'
+
+  # Use MySQL for test also
+  gem 'mysql2'
 end
