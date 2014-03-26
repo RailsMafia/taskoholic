@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(version: 20140323122758) do
     t.integer  "owner_id"
   end
 
-  add_index "projects", ["owner_id"], name: "index_projects_on_owner_id"
+  add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
 
   create_table "projects_users", id: false, force: true do |t|
     t.integer "user_id"
     t.integer "project_id"
   end
 
-  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id"
+  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.datetime "due_date"
@@ -48,6 +48,6 @@ ActiveRecord::Schema.define(version: 20140323122758) do
     t.string   "password_digest"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
