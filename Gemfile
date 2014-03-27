@@ -49,6 +49,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pg'
 
+gem 'devise'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry'
