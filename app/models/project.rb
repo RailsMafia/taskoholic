@@ -1,6 +1,8 @@
 class Project < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :tasks
-  belongs_to :owner, 
+  belongs_to :owner,
     class_name: "User"
+
+  validates :name, presence: true
 end
