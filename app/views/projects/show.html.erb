@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<div class="alert alert-info text-center">
+  <stront>Will be implemented later...</storng>
+</div>
+
+<div class="page-header">
+  <h1><%= @project.name %>&nbsp;<small><%= link_to '[edit]', edit_project_path(@project) %></small></h1>
+</div>
+
+<div class="well">
+  <%= @project.description %>
+</div>
+
+<div class="text-center">
+
+<%= link_to 'Back', projects_path %>
+</div>
