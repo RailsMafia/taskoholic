@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    @users = @project.users
   end
 
   # GET /projects/new
@@ -24,6 +25,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owner = current_user
+    @project.users << current_user
     if @project.save
         redirect_to projects_url, notice: 'Project was successfully created.'
     else
@@ -56,4 +58,5 @@ class ProjectsController < ApplicationController
     def project_params
       params[:project].permit(:name, :description)
     end
+
 end
