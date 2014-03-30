@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "user registration", :type => :feature do
+describe "user registration", type: :feature do
   it "allows new users to register" do
     visit '/signup'
 
