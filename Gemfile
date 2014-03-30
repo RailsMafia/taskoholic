@@ -67,6 +67,9 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webmock'
 
+  # for behaviour testing
+  gem 'capybara'
+
   # Use MySQL for test also
   gem 'mysql2'
 end
