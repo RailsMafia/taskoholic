@@ -9,6 +9,15 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
  @import "bootstrap";
+
+// Devise helper links styles
+ div.user-links a {
+  padding: 0 10px;
+  margin: 5px 0;
+ }
+ div.user-links a:not(:last-child) {
+  border-right: 1px solid #999;
+ }
+// devise helper links end
