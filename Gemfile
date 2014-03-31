@@ -49,7 +49,7 @@ gem 'pg'
 gem 'devise'
 
 group :development, :test do
-  gem 'sqlite3'
+
   gem 'pry-rails'
   gem 'pry'
   gem 'pry-nav'
@@ -61,13 +61,15 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'spork'
-  gem 'database_cleaner', '1.0.0.RC1'
+  gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'webmock'
 
   # for behaviour testing
   gem 'capybara'
 
+  # Test with SQLite db
+  gem 'sqlite3'
   # Use MySQL for test also
   gem 'mysql2'
 end
