@@ -3,7 +3,6 @@ require 'spec_helper'
 describe ProjectsController do
 
   context "for NOT logged in user" do
-    # before { sign_out FactoryGirl.create(:user) }
     describe "GET #index" do
       it "redirects user to login" do
         get :index
@@ -16,9 +15,7 @@ describe ProjectsController do
     before do
       user = FactoryGirl.create(:user)
       3.times do
-        project = FactoryGirl.create(:project)
-        project.owner = user
-        project.save
+        FactoryGirl.create(:project, owner: user)
       end
       sign_in user
     end
