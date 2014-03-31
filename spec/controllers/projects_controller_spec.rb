@@ -14,10 +14,10 @@ describe ProjectsController do
   context "for logged in user" do
     before do
       user = FactoryGirl.create(:user)
+      sign_in user
       3.times do
         FactoryGirl.create(:project, owner: user)
       end
-      sign_in user
     end
 
     describe "GET #show" do
