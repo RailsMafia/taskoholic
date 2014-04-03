@@ -5,4 +5,6 @@ class Project < ActiveRecord::Base
     class_name: "User"
 
   validates :name, presence: true
+
+  scope :owned, ->(user) { where(owner_id: user.id) }
 end
