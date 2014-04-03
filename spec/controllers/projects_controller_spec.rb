@@ -13,21 +13,21 @@ describe ProjectsController do
 
   context "for logged in user" do
     before do
-      user = FactoryGirl.create(:user)
-      sign_in user
+      @user = FactoryGirl.create(:user)
+      sign_in @user
       3.times do
-        FactoryGirl.create(:project, owner: user)
+        FactoryGirl.create(:project, owner: @user)
       end
     end
 
     describe "GET #show" do
       it "assigns the requested project to @project" do
-        project = FactoryGirl.create(:project)
+        project = FactoryGirl.create(:project, owner: @user)
         get :show, id: project
         expect(assigns(:project)).to eq(project)
       end
       it "renders the #show view" do
-        get :show, id: FactoryGirl.create(:project)
+        get :show, id: FactoryGirl.create(:project, owner: @user)
         expect(response).to render_template :show
       end
     end
@@ -46,20 +46,20 @@ describe ProjectsController do
 
     describe "GET #show" do
       it "assigns the requested project to @project" do
-        project = FactoryGirl.create(:project)
+        project = FactoryGirl.create(:project, owner: @user)
         get :show, id: project
         expect(assigns(:project)).to eq(project)
       end
 
       it "renders the #show view" do
-        get :show, id: FactoryGirl.create(:project)
+        get :show, id: FactoryGirl.create(:project, owner: @user)
         expect(response).to render_template :show
       end
     end
 
     describe 'DELETE destroy' do
       before :each do
-        @project= FactoryGirl.create(:project)
+        @project= FactoryGirl.create(:project, owner: @user)
       end
 
       it "deletes the project" do
