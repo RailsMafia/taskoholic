@@ -6,7 +6,4 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :projects
   has_many :tasks
-  def own_projects
-    Project.where(owner_id: self.id)
-  end
 end
