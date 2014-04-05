@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = current_user.own_projects
+    @projects = Project.owned(current_user)
   end
 
   # GET /projects/1
