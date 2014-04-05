@@ -12,32 +12,26 @@ describe ProjectsController do
   end
 
   context "for logged in user" do
+    let(:user) { FactoryGirl.create(:user) }
+    subject { FactoryGirl.create(:project, owner: user) }
+        
     before do
-      @user = FactoryGirl.create(:user)
-      sign_in @user
-      3.times do
-        FactoryGirl.create(:project, owner: @user)
-      end
+      sign_in user
     end
 
     describe "GET #show" do
-      it "assigns the requested project to @project" do
-        project = FactoryGirl.create(:project, owner: @user)
-        get :show, id: project
-        expect(assigns(:project)).to eq(project)
+      it "assigns the requested project to subject" do
+        get :show, id: subject
+        expect(assigns(:project)).to eq(subject)
       end
-      it "renders the #show view" do
-        get :show, id: FactoryGirl.create(:project, owner: @user)
+
+      it "renders the :show view" do
+        get :show, id: subject
         expect(response).to render_template :show
       end
     end
 
     describe "GET #index" do
-      it "shows proper projects list" do
-        get :index
-        expect(assigns(:projects).count).to eq 3
-      end
-
       it "renders the :index view" do
         get :index
         expect(response).to render_template :index
@@ -45,32 +39,97 @@ describe ProjectsController do
     end
 
     describe "GET #show" do
-      it "assigns the requested project to @project" do
-        project = FactoryGirl.create(:project, owner: @user)
-        get :show, id: project
-        expect(assigns(:project)).to eq(project)
+      it "assigns the requested project to subject" do
+        get :show, id: subject
+        expect(assigns(:project)).to eq(subject)
       end
 
-      it "renders the #show view" do
-        get :show, id: FactoryGirl.create(:project, owner: @user)
+      it "renders the :show view" do
+        get :show, id: subject
         expect(response).to render_template :show
       end
     end
-
-    describe 'DELETE destroy' do
-      before :each do
-        @project= FactoryGirl.create(:project, owner: @user)
+	
+	describe "POST #create" do
+      context "with valid attributes" do
+        it "creates new object" do
+          expect{
+            post :create, project: FactoryGirl.attributes_for(:project)
+          }.to change(Project, :count).by(1)
+        end
+      
+        it "rendirects to index path" do
+          post :create, project: FactoryGirl.attributes_for(:project)
+          expect(response).to redirect_to projects_path
+        end
       end
+      
+      context "with not valid attributes" do
+        it "not save object to db" do
+          expect{
+            post :create, project: FactoryGirl.attributes_for(:invalid_project)
+          }.to_not change(Project, :count)
+        end
+      
+        it "render new view" do
+          post :create, project: FactoryGirl.attributes_for(:invalid_project)
+          expect(response).to render_template :new
+        end
+      end
+    end
+
+    describe "PATCH #update" do
+      context "with valid attributes" do
+        it "updates object" do
+          expect{
+            patch :update, id: subject, project: { name: 'new_project' }
+          }.to change{ subject.reload.name }.to('new_project')
+        end
+      
+        it "rendirects to index path" do
+          patch :update, id: subject, project: { name: 'new_project' }
+          expect(response).to redirect_to projects_path
+        end
+      end
+      
+      context "with not valid attributes" do
+        it "not save object to db" do
+          expect{
+            patch :update, id: subject, project: FactoryGirl.attributes_for(:invalid_project)
+          }.to_not change{ subject.name }
+        end
+      
+        it "render edit view" do
+          post :update, id: subject, project: FactoryGirl.attributes_for(:invalid_project)
+          expect(response).to render_template :edit
+        end
+      end
+    end
+	
+	describe "GET #edit" do
+      it "assigns the requested project to subject" do
+        get :edit, id: subject
+        expect(assigns(:project)).to eq(subject)
+      end
+      
+      it "renders the :edit view" do
+        get :edit, id: subject
+        expect(response).to render_template :edit
+      end
+    end
+
+    describe 'DELETE #destroy' do
+      before(:each) { @project = FactoryGirl.create :project, owner: user }
 
       it "deletes the project" do
-        expect{
+        expect {
           delete :destroy, id: @project
-        }.to change(Project,:count).by(-1)
+        }.to change(Project, :count).by(-1)
       end
 
       it "redirects to projects#index" do
         delete :destroy, id: @project
-        expect(response).to redirect_to projects_url
+        expect(response).to redirect_to projects_path
       end
     end
 
