@@ -64,6 +64,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'webmock'
+  gem 'psych'
 
   # for behaviour testing
   gem 'capybara'

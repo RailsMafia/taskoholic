@@ -99,6 +99,7 @@ GEM
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
+    psych (2.0.5)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -198,6 +199,7 @@ DEPENDENCIES
   pry-nav
   pry-rails
   pry-remote
+  psych
   rails (= 4.0.4)
   rspec-rails
   sass-rails (~> 4.0.2)
