@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource param_method: :project_params
 
   # GET /projects
   def index
@@ -27,9 +26,10 @@ class ProjectsController < ApplicationController
     @project.owner = current_user
     @project.users << current_user
     if @project.save
-        redirect_to projects_url, notice: 'Project was successfully created.'
+      current_user.add_role :owner, @project
+      redirect_to projects_url, notice: 'Project was successfully created.'
     else
-        render 'new'
+      render 'new'
     end
   end
 
@@ -50,9 +50,9 @@ class ProjectsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
+    # def set_project
+    #   @project = Project.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
