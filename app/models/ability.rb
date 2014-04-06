@@ -9,7 +9,7 @@ class Ability
     can :read, Project do |project|
       project.users.find user.id rescue false
     end
-    can [:update, :delete], Project, owner: user
+    can [:read, :update, :destroy], Project, owner: user
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
