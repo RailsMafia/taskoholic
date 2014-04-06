@@ -47,6 +47,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pg'
 
 gem 'devise'
+gem 'cancancan'
+gem 'rolify'
 
 group :development, :test do
 

@@ -12,6 +12,10 @@
  */
  @import "bootstrap";
 
+body.logged {
+  padding-top: 70px;
+}
+
 // Devise helper links styles
  div.user-links a {
   padding: 0 10px;
