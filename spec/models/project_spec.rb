@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe Project do
   before do
-    user = FactoryGirl.create(:user)
-    @project = FactoryGirl.create(:project, owner: user)
+    @project = FactoryGirl.create(:project)
   end
   
   subject { @project }
