@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<div class="alert alert-info text-center">
-  <stront>Will be implemented later...</storng>
-</div>
-
 <div class="page-header">
   <h1><%= @project.name %>&nbsp;<small><%= link_to '[edit]', edit_project_path(@project) %></small></h1>
 </div>
@@ -25,7 +21,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-         <td><%= user.email %></td>
+        <td><%= user.email %></td>
       </tr>
     <% end %>
   </tbody>
