@@ -1,0 +1,35 @@
+<div class="page-header">
+<h1>Project Tasks <small><%= link_to 'New Task', new_project_task_path %></small></h1>
+</div>
+
+<br>
+
+<% if flash[:notice] -%>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td style="width: 250px">
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back to projects', project_tasks_path %>
