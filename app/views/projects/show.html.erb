@@ -8,11 +8,29 @@
   <%= @project.description %>
 </div>
 
+<<<<<<< HEAD
 <h3><%= link_to 'Tasks', project_tasks_path(@project) %></h3>
 
+
+
+<div class="col-md-3">
 <%= render partial: "participants", locals: {users: @users} if @users.any? %>
+</div>
+
+<div class="col-md-9">
+<h3><%= link_to 'Tasks', project_tasks_path(@project) %></h3>
+<% @project.tasks.includes(:user).each do |task| %>
+  <div class="col-md-4">
+    <div class="alert alert-info">
+      <p><strong>What?</strong> <%= task.name %></p>
+      <p><strong>Who?</strong> <%= task.user.nil? ? 'anybody' : task.user.email %></p>
+      <p><strong>When?</strong> <%= task.due_date %></p>
+      <p class="text-right"><%= link_to 'view', [@project, task] %></p>
+    </div>
+  </div>
+<% end %>
+</div>
 
 <div class="text-center">
-
 <%= link_to 'Back', projects_path %>
 </div>

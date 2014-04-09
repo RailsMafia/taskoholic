@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_project
 
   def index
     @tasks = Task.where(project_id: params[:project_id])
@@ -11,7 +12,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.project_id = params[:project_id]
+    @task.project = @project
     if @task.save
       redirect_to project_tasks_url, notice: 'Task was successfully created.'
     else
@@ -40,6 +41,10 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params[:task].permit(:name, :description)
+      params[:task].permit(:name, :description, :due_date, :user_id)
+    end
+
+    def load_project
+      @project = Project.find(params[:project_id])
     end
 end
