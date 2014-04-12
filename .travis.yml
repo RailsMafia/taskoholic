@@ -11,7 +11,7 @@ env:
 script:
 - RAILS_ENV=test bundle exec rake db:migrate --trace
 - bundle exec rake db:test:prepare
-- bundle exec rake
+- CODECLIMATE_REPO_TOKEN=154df1649bd8999e0c47c8cb027b6bd04fa981241acaa1e85cdd2dcdc06b2a31 bundle exec rake
 before_script:
 - cp config/database.travis.yml config/database.yml
 - mysql -e 'create database taskoholic_test'

@@ -64,6 +64,8 @@ group :development, :test do
 end
 
 group :test do
+  gem "codeclimate-test-reporter", require: nil
+
   gem 'rspec-rails'
   gem 'spork-rails'
   gem 'database_cleaner'
