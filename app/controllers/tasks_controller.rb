@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :load_project
+  load_and_authorize_resource param_method: :task_params
 
   def index
     @tasks = Task.where(project_id: params[:project_id])

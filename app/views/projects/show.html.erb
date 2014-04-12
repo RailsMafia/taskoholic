@@ -1,7 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <div class="page-header">
-  <h1><%= @project.name %>&nbsp;<small><%= link_to '[edit]', edit_project_path(@project) %></small></h1>
+  <h1><%= @project.name %>&nbsp;
+    <span>
+      <%= link_to edit_project_path, class: 'btn btn-success' do %>
+      <i class="glyphicon glyphicon-pencil"></i> Edit
+      <% end %>
+    </span>
+  </h1>
 </div>
 
 <div class="well">
@@ -19,10 +25,15 @@
 <% else %>
   <% @project.tasks.includes(:user).each do |task| %>
     <div class="col-md-4">
-      <div class="alert alert-info">
+      <div class="alert <%= task.late? ? 'bg-danger' : 'bg-success' %>">
+        <% if task.late? %>
+        <span class="label label-danger pull-right">late</span>
+        <% end %>
         <p><strong>What?</strong> <%= task.name %></p>
         <p><strong>Who?</strong> <%= task.user.nil? ? 'anybody' : task.user.email %></p>
-        <p><strong>When?</strong> <%= task.due_date %></p>
+        <% unless task.due_date.nil? %>
+        <p><strong>When?</strong> <%= task.due_date.strftime '%B %d %Y'  %></p>
+        <% end %>
         <p class="text-right"><%= link_to 'view', [@project, task] %></p>
       </div>
     </div>
@@ -31,6 +42,6 @@
 
 </div>
 
-<div class="text-center">
-<%= link_to 'Back', projects_path %>
+<div class="col-md-12 text-center">
+<%= link_to 'back to all projects', projects_path %>
 </div>

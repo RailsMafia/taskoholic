@@ -1,2 +1,49 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div class="col-md-3 col-md-offset-1">
+
+  <h4>Project:</h4>
+  <p><%= link_to @project.name, @project %></p>
+  <br>
+  <h4>Owner:</h4>
+  <p><i class="glyphicon glyphicon-user"></i> <%= @project.owner.name %></p>
+  <p><i class="glyphicon glyphicon-envelope"></i> <%= @project.owner.email %></p>
+  <br>
+  <h4>Assigned to:</h4>
+  <p><i class="glyphicon glyphicon-user"></i> <%= @task.user.nil? ? 'nobody' : @taks.user.email %></p>
+  <br>
+  <% unless @task.due_date.nil? %>
+  <h4>Due date:</h4>
+  <p><i class="glyphicon glyphicon-calendar"></i> <%= @task.due_date.strftime '%B %d %Y' %></p>
+  <br>
+  <% end %>
+  <h4>Last updated:</h4>
+  <p><i class="glyphicon glyphicon-calendar"></i> <%= @task.updated_at.to_s :long %></p>
+</div>
+<div class="col-md-6">
+  <h2>Task details
+    <span class="pull-right">
+      <% if can? :edit, @task %>
+        <%= link_to edit_project_task_path, class: 'btn btn-success' do %>
+        <i class="glyphicon glyphicon-pencil"></i> Edit task
+        <% end %>
+      <% end %>
+      <% if can? :edit, @task %>
+        <%= link_to project_task_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+        <i class="glyphicon glyphicon-trash"></i> Delete
+        <% end %>
+      <% end %>
+    </span>
+  </h2>
+  <hr>
+  <p class="lead">
+    <input type="checkbox" />&nbsp;
+    <%= @task.name %>
+    <% if @task.late? %>
+    <span class="label label-warning">late</span>
+    <% end %>
+  </p>
+  <hr>
+  <p class="well"><%= @task.description %></p>
+
+  <h2 class="text-muted">Files <small>coming soon...</span></h2>
+  <h2 class="text-muted">Comments <small>coming soon...</span></h2>
+</div>

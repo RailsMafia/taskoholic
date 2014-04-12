@@ -1,6 +1,10 @@
+<div class="col-md-6 col-md-offset-3">
 <h1>Editing task</h1>
 
 <%= render 'form' %>
+</div>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<div class="col-md-12 text-center">
+<%= link_to 'Show', project_task_path(@project, @task) %> |
+<%= link_to 'Back', :back %>
+</div>
