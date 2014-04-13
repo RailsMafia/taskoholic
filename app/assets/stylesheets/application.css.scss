@@ -25,3 +25,12 @@ body.logged {
   border-right: 1px solid #999;
  }
 // devise helper links end
+// project new/edit forms buttons
+form.new_project div.text-center a,
+form.edit_project div.text-center a {
+  padding: 0 10px
+}
+form.new_project div.text-center input,
+form.edit_project div.text-center input {
+  margin: 0 10px;
+}
