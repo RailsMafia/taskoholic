@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
   has_many :own_projects, class_name: "Project", foreign_key: 'owner_id'
   has_many :tasks
   validates :email, uniqueness: true
-
+  def self.has_no_project(project_id)
+     self.all.includes(:projects).where.not([ "projects_users.project_id = (?)" , project_id]).references(:projects_users)
+  end
 end
