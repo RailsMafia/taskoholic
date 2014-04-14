@@ -9,6 +9,6 @@ class Task < ActiveRecord::Base
   validates :description, length: {maximum: 1000}
 
   def late?
-    !self.due_date.nil? && self.due_date < Time.now
+    self.due_date.present? && self.due_date < Time.now
   end
 end
