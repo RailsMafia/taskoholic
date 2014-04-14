@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
   end
   
   def assign
-    user = User.find[params[:user][:user_id]]
+    user = User.find(params[:user]['user_id'])
     @project.assign_user(user)
     redirect_to projects_url
   end

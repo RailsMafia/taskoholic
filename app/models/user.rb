@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :tasks
   validates :email, uniqueness: true
   def self.has_no_project(project_id)
-     self.all.includes(:projects).where.not([ "projects_users.project_id = (?)" , project_id]).references(:projects_users)
+     join = "LEFT OUTER JOIN projects_users AS pu ON pu.user_id = users.id AND pu.project_id = " + project_id.to_s
+     self.joins(join).where('pu.project_id' => nil)
   end
 end
