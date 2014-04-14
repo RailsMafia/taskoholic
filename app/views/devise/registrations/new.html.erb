@@ -3,7 +3,9 @@
   <%= devise_error_messages! %>
   <h2 class="form-singup-heading">Sign up</h2>
 
-  <%= f.email_field :email, class: 'form-control', placeholder: 'Your Email', autofocus: true %>
+  <%= f.text_field :name, class: 'form-control', placeholder: 'Your Name', autofocus: true %>
+
+  <%= f.email_field :email, class: 'form-control', placeholder: 'Your Email' %>
 
   <%= f.password_field :password, class: 'form-control no-radius', placeholder: 'Password', autocomplete: "off" %>
 
