@@ -17,3 +17,8 @@
     <% end %>
   </tbody>
 </table>
+<h4>Add new participant</h4>
+<%= form_tag(assign_project_path, method: "patch") do %>
+  <%= collection_select(:user, :user_id, User.has_no_project(@project.id), :id, :email) %>
+  <%= submit_tag("Assign") %>
+<% end %>

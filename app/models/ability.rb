@@ -9,7 +9,7 @@ class Ability
     can :read, Project do |project|
       project.users.find user.id rescue false
     end
-    can [:read, :update, :destroy], Project, owner: user
+    can [:read, :update, :destroy, :assign], Project, owner: user
     can :create, Task
     can [:read, :update, :destroy], Task do |task|
       task.project.owner = user

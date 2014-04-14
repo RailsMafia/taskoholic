@@ -12,5 +12,8 @@ class Project < ActiveRecord::Base
   validates :name, presence: true, length: {minimum: 2, maximum: 50}
   validates :owner, presence: true
   validates :description, length: {minimum: 10, maximum: 1000}
-
+  
+  def assign_user(user)
+    self.users << user
+  end
 end
