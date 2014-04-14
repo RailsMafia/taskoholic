@@ -50,6 +50,9 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 
+# for heroku
+gem 'rails_12factor', group: :production
+
 group :development, :test do
 
   gem 'pry-rails'
@@ -61,6 +64,8 @@ group :development, :test do
 end
 
 group :test do
+  gem "codeclimate-test-reporter", require: nil
+
   gem 'rspec-rails'
   gem 'spork-rails'
   gem 'database_cleaner'

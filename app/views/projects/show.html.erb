@@ -1,32 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <div class="page-header">
-  <h1><%= @project.name %>&nbsp;<small><%= link_to '[edit]', edit_project_path(@project) %></small></h1>
+  <h1><%= @project.name %>&nbsp;
+    <span>
+      <%= link_to edit_project_path, class: 'btn btn-success' do %>
+      <i class="glyphicon glyphicon-pencil"></i> Edit
+      <% end %>
+    </span>
+  </h1>
 </div>
 
 <div class="well">
   <%= @project.description %>
 </div>
-<h3>Participants</h3>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>User Name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
 
-  <tbody>
+<div class="col-md-3">
+<%= render partial: "participants", locals: {users: @users} if @users.any? %>
+</div>
 
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="text-center">
+<div class="col-md-9">
+<h3><%= link_to 'Tasks', project_tasks_path(@project) %></h3>
+<% if @project.tasks.empty? %>
+  <p class="text-center">Seems you don't have any. It's time to <%= link_to "create new", new_project_task_path(@project) %></p>
+<% else %>
+  <% @project.tasks.includes(:user).each do |task| %>
+    <div class="col-md-4">
+      <div class="alert <%= task.late? ? 'bg-danger' : 'bg-success' %>">
+        <% if task.late? %>
+        <span class="label label-danger pull-right">late</span>
+        <% end %>
+        <p><strong>What?</strong> <%= task.name %></p>
+        <p><strong>Who?</strong> <%= task.user.nil? ? 'anybody' : task.user.email %></p>
+        <% unless task.due_date.nil? %>
+        <p><strong>When?</strong> <%= task.due_date.strftime '%B %d %Y'  %></p>
+        <% end %>
+        <p class="text-right"><%= link_to 'view', [@project, task] %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
-<%= link_to 'Back', projects_path %>
+</div>
+
+<div class="col-md-12 text-center">
+<%= link_to 'back to all projects', projects_path %>
 </div>

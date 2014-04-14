@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require 'rubygems'
 require 'spork'
 
@@ -38,6 +41,7 @@ Spork.prefork do
 
     config.before(:all) do
       WebMock.disable_net_connect! :allow_localhost => true
+      WebMock.disable_net_connect! allow: %w{codeclimate.com}
     end
 
     config.after(:all, type: :request) do
