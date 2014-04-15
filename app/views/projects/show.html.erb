@@ -14,11 +14,11 @@
   <%= @project.description %>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-4">
 <%= render partial: "participants", locals: {users: @users} if @users.any? %>
 </div>
 
-<div class="col-md-9">
+<div class="col-md-8">
 <h3><%= link_to 'Tasks', project_tasks_path(@project) %></h3>
 <% if @project.tasks.empty? %>
   <p class="text-center">Seems you don't have any. It's time to <%= link_to "create new", new_project_task_path(@project) %></p>

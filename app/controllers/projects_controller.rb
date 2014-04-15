@@ -48,11 +48,11 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_url
   end
-  
+
   def assign
     user = User.find(params[:user]['user_id'])
     @project.assign_user(user)
-    redirect_to projects_url
+    redirect_to @project
   end
 
   private
