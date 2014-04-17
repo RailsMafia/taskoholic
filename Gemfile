@@ -53,6 +53,9 @@ gem 'rolify'
 # for heroku
 gem 'rails_12factor', group: :production
 
+# dates validation
+gem 'validates_timeliness', '~> 3.0.14'
+
 group :development, :test do
 
   gem 'pry-rails'
