@@ -1,4 +1,15 @@
-<%= form_for(@task, html: {method: 'POST'}, url: project_tasks_path) do |f| %>
+<%= form_for(@task, html: {method: 'POST', class: 'clearfix'}, url: project_tasks_path) do |f| %>
+  <% if @task.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="text-center"><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h4>
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
@@ -20,7 +31,7 @@
   </div>
 
   <div class="pull-right">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
 
 <% end %>

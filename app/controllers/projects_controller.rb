@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owner = current_user
-    @project.users << current_user
+    @project.assign_user(current_user)
     if @project.save
       current_user.add_role :owner, @project
       redirect_to projects_url, notice: 'Project was successfully created.'
@@ -47,6 +47,12 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     redirect_to projects_url
+  end
+
+  def assign
+    user = User.find(params[:user]['user_id'])
+    @project.assign_user(user)
+    redirect_to @project
   end
 
   private

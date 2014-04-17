@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails', '~> 4.1.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -53,6 +53,9 @@ gem 'rolify'
 # for heroku
 gem 'rails_12factor', group: :production
 
+# dates validation
+gem 'validates_timeliness', '~> 3.0.14'
+
 group :development, :test do
 
   gem 'pry-rails'
@@ -69,6 +72,7 @@ group :test do
   gem 'rspec-rails'
   gem 'spork-rails'
   gem 'database_cleaner'
+  gem 'minitest'
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'psych'
